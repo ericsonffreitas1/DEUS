@@ -200,3 +200,17 @@ body.escuro .modal-conteudo {
 body.escuro .copiado-msg {
   color: #90ee90;
 }
+
+/* Nova mensagem de confirmação de oração enviada */
+.mensagem-enviada {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #4caf50;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  display: none;
+}
+
+body.escuro .mensagem-enviada {
+  color: #90ee90;
+}
