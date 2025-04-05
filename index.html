@@ -14,11 +14,15 @@
   <div class="container">
     <h1>DEUS</h1>
 
-    <textarea maxlength="1000" placeholder="Escreva sua oração aqui..." oninput="atualizarContador(this.value)"></textarea>
+    <textarea id="mensagemOracao" maxlength="1000" placeholder="Escreva sua oração aqui..." oninput="atualizarContador(this.value)"></textarea>
     <div class="contador" id="contador">1000 caracteres restantes</div>
 
     <div class="botao-container">
-      <button>Oração</button>
+      <button onclick="enviarOracao()">Oração</button>
+    </div>
+
+    <div class="mensagem-enviada" id="mensagemEnviada">
+      Sua oração foi enviada, confia em Deus e Ele te responderá.
     </div>
 
     <div class="mensagem">
@@ -53,7 +57,6 @@
     function alternarTema() {
       document.body.classList.toggle("escuro");
       const botao = document.getElementById("tema-btn");
-
       const temaAtual = document.body.classList.contains("escuro") ? "escuro" : "claro";
       localStorage.setItem("tema", temaAtual);
       botao.textContent = temaAtual === "escuro" ? "☀️" : "🌙";
@@ -74,6 +77,21 @@
         msg.style.display = "block";
         setTimeout(() => msg.style.display = "none", 2000);
       });
+    }
+
+    function enviarOracao() {
+      const textarea = document.getElementById('mensagemOracao');
+      const texto = textarea.value.trim();
+      if (texto.length === 0) return;
+
+      textarea.value = ""; // limpa a caixa de texto
+      atualizarContador(""); // reseta o contador
+
+      const mensagem = document.getElementById('mensagemEnviada');
+      mensagem.style.display = "block";
+      setTimeout(() => {
+        mensagem.style.opacity = "1";
+      }, 100);
     }
 
     window.onload = carregarTema;
