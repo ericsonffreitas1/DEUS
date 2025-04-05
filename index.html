@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DEUS</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="theme-toggle">
+    <button id="tema-btn" onclick="alternarTema()">🌙</button>
+  </div>
+
+  <div class="container">
+    <h1>DEUS</h1>
+
+    <textarea maxlength="1000" placeholder="Escreva sua oração aqui..." oninput="atualizarContador(this.value)"></textarea>
+    <div class="contador" id="contador">1000 caracteres restantes</div>
+
+    <div class="botao-container">
+      <button>Oração</button>
+    </div>
+
+    <div class="mensagem">
+      Esta oração é entre você e Deus. Nada é enviado, salvo ou compartilhado. É um espaço sagrado, apenas seu.
+    </div>
+
+    <div class="doacao-container">
+      <button onclick="document.getElementById('modal').style.display='flex'">Ajudar o Desenvolvedor ❤️</button>
+    </div>
+  </div>
+
+  <div class="modal-doacao" id="modal">
+    <div class="modal-conteudo">
+      <span class="fechar" onclick="document.getElementById('modal').style.display='none'">&times;</span>
+      <h2>Ajude o desenvolvedor</h2>
+      <img src="IMG_8543.jpg" alt="QR Code PIX" class="qrcode"/>
+      <div class="chave-pix" id="chavePix">
+        <strong>Chave PIX:</strong><br>
+        00020126580014BR.GOV.BCB.PIX01364224fab3-5d1e-47c3-bc35-6f9539d9b3c95204000053039865802BR5924Ericson Ferreira Freitas6009SAO PAULO62140510mzxIHYc4gL6304D3C4
+      </div>
+      <button class="copiar-btn" onclick="copiarPix()">📋 Copiar Chave PIX</button>
+      <div id="copiado" class="copiado-msg">Chave copiada com sucesso! ✅</div>
+    </div>
+  </div>
+
+  <script>
+    function atualizarContador(valor) {
+      const restante = 1000 - valor.length;
+      document.getElementById('contador').innerText = `${restante} caracteres restantes`;
+    }
+
+    function alternarTema() {
+      document.body.classList.toggle("escuro");
+      const botao = document.getElementById("tema-btn");
+
+      const temaAtual = document.body.classList.contains("escuro") ? "escuro" : "claro";
+      localStorage.setItem("tema", temaAtual);
+      botao.textContent = temaAtual === "escuro" ? "☀️" : "🌙";
+    }
+
+    function carregarTema() {
+      const temaSalvo = localStorage.getItem("tema");
+      if (temaSalvo === "escuro") {
+        document.body.classList.add("escuro");
+        document.getElementById("tema-btn").textContent = "☀️";
+      }
+    }
+
+    function copiarPix() {
+      const chave = document.getElementById("chavePix").innerText.replace("Chave PIX:", "").trim();
+      navigator.clipboard.writeText(chave).then(() => {
+        const msg = document.getElementById("copiado");
+        msg.style.display = "block";
+        setTimeout(() => msg.style.display = "none", 2000);
+      });
+    }
+
+    window.onload = carregarTema;
+  </script>
+</body>
+</html>
