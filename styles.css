@@ -158,7 +158,6 @@ button:hover {
   color: green;
 }
 
-/* Tema toggle */
 .theme-toggle {
   position: absolute;
   top: 15px;
@@ -172,7 +171,6 @@ button:hover {
   cursor: pointer;
 }
 
-/* Tema escuro */
 body.escuro {
   background-color: #111;
   color: #eee;
@@ -201,7 +199,6 @@ body.escuro .copiado-msg {
   color: #90ee90;
 }
 
-/* Nova mensagem de confirmação de oração enviada */
 .mensagem-enviada {
   margin-top: 15px;
   font-size: 0.9rem;
@@ -213,4 +210,33 @@ body.escuro .copiado-msg {
 
 body.escuro .mensagem-enviada {
   color: #90ee90;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 600px) {
+  body {
+    height: auto;
+    padding: 20px;
+    align-items: flex-start;
+  }
+
+  textarea {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .modal-conteudo {
+    width: 95%;
+  }
+
+  .qrcode {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .mensagem {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+  }
 }
